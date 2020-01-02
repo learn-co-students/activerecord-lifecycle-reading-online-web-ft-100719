@@ -1,7 +1,13 @@
 class Post < ActiveRecord::Base
 
   belongs_to :author
-  validate :is_title_case 
+  validate :is_title_case
+
+  #before_save is called after validation occurs. So Rails goes is valid? "Nope! Stop!", and never #makes it to before_save
+  #before_save :make_title_case
+  before_validation :make_title_case #This one happens before validation. title cases the title, #then the validation runs
+
+  # before_save :email_author_about_post
 
   private
 
