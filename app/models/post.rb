@@ -2,6 +2,7 @@ class Post < ActiveRecord::Base
 
   belongs_to :author
   validate :is_title_case 
+  before_validation :is_title_case
 
   private
 
@@ -15,3 +16,4 @@ class Post < ActiveRecord::Base
     self.title = self.title.titlecase
   end
 end
+
